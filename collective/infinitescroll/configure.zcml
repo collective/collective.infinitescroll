@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.infinitescroll">
+
+    <browser:resourceDirectory
+        name="collective.infinitescroll"
+        directory="js"
+        />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.infinitescroll: default"
+      directory="profiles/default"
+      description="collective.infinitescroll default profile: Installs
+                   the required javascripts."
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+</configure>
