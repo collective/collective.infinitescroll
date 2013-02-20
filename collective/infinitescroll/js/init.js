@@ -1,15 +1,16 @@
 (function($) {
 
     var batch_size = 10;
+    var next_button_selector = 'div.listingBar span.next a';
 
     function plone_path(next_page) {
-        path = $('div.listingBar span.next a').attr('href');
+        path = $(next_button_selector).attr('href');
         if (path.match(/^(.*?b_start.*?$)/)) {
             // Plone Batching
             parsed_path = path.match(/^(.*?b_start:int=)\d*(.*?$)/).slice(1);
-            return parsed_path[0] + (next_page-1)*batch_size + parsed_path[1] + '&ajax_load=1';
+            return parsed_path[0] + (next_page-1)*batch_size + parsed_path[1] + '&b_size='+ batch_size + '&ajax_load=1';
         }
-        return ['']
+        return [''];
     }
 
     $(document).ready(function() {
@@ -20,10 +21,11 @@
         $('#content-core').infinitescroll({
             //debug: true,
             navSelector:  "div.listingBar",
-            nextSelector: "div.listingBar span.next a",
-            itemSelector: "#content-core div dl",
+            nextSelector: next_button_selector,
+            itemSelector: "#content-core",
             path: plone_path,
             maxPage: max_page
         });
     });
+
 })(jQuery);
