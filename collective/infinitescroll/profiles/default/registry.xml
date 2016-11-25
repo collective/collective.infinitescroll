@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<registry>
+
+	<records prefix="plone.resources/collectiveinfinitescroll"
+	          interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+	   <value key="js">++resource++collective.infinitescroll/init.js</value>
+	</records>
+
+	<records prefix="plone.resources/infinitescroll"
+	          interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+	   <value key="js">++resource++collective.infinitescroll/jquery.infinitescroll.js</value>
+	</records>
+
+	<!-- bundle definition -->
+	<records prefix="plone.bundles/collectiveinfinitescroll-bundle"
+	          interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+	  <value key="resources">
+	    <element>infinitescroll</element>
+	    <element>collectiveinfinitescroll</element>
+	  </value>
+	  <value key="enabled">True</value>
+	  <value key="compile">True</value>
+	  <value key="jscompilation">++plone++collective.infinitescroll/js/collectiveinfinitescroll-bundle-compiled.js</value>
+	  <value key="csscompilation">++plone++collective.infinitescroll/css/collectiveinfinitescroll-bundle-compiled.css</value>
+	  <value key="last_compilation"></value>
+	</records>
+
+</registry>

@@ -1,7 +1,7 @@
 (function($) {
 
     var batch_size = 10;
-    var next_button_selector = 'div.listingBar span.next a';
+    var next_button_selector = 'nav.pagination li.next a';
 
     function plone_path(next_page) {
         path = $(next_button_selector).attr('href');
@@ -14,18 +14,21 @@
     }
 
     $(document).ready(function() {
-        var last_page = $('div.listingBar a:last').attr('href');
-        var last_page_paths = last_page.match(/^(.*?b_start:int=)(\d*)(.*?$)/).slice(1);
-        var max_page = (last_page_paths[1]/batch_size)+1;
+        var last_page = $('nav.pagination li.last a').attr('href');
+        
+        if (last_page) {
+            var last_page_paths = last_page.match(/^(.*?b_start:int=)(\d*)(.*?$)/).slice(1);
+            var max_page = (last_page_paths[1]/batch_size)+1;
 
-        $('#content-core').infinitescroll({
-            //debug: true,
-            navSelector:  "div.listingBar",
-            nextSelector: next_button_selector,
-            itemSelector: "#content-core",
-            path: plone_path,
-            maxPage: max_page
-        });
+            $('#content-core').infinitescroll({
+                //debug: true,
+                navSelector:  "nav.pagination",
+                nextSelector: next_button_selector,
+                itemSelector: ".entries",
+                path: plone_path,
+                maxPage: max_page
+            });
+        }
     });
 
 })(jQuery);
